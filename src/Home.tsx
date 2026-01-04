@@ -1,0 +1,342 @@
+import { useState } from "react";
+import { toast } from "sonner";
+
+export default function Home() {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    phone: "+234",
+    email: "",
+    agreeToEmails: false,
+    propertyType: "",
+    location: "",
+    bedrooms: "",
+    budget: "",
+    amenities: {
+      pool: false,
+      gym: false,
+      games: false,
+      cinema: false,
+    },
+    additionalNotes: "",
+  });
+
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleCheckboxChange = (name: string) => {
+    if (name in formData.amenities) {
+      setFormData((prev) => ({
+        ...prev,
+        amenities: {
+          ...prev.amenities,
+          [name]: !prev.amenities[name as keyof typeof prev.amenities],
+        },
+      }));
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: !prev[name as keyof typeof prev],
+      }));
+    }
+  };
+
+  const handleSelectChange = (name: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+    toast.success("Request Submitted!", {
+      description:
+        "Thank you for your request! We will contact you soon with available options.",
+      duration: 5000,
+    });
+  };
+  return (
+    <main className="flex-1">
+      <div className="container py-8 md:py-12 max-w-2xl">
+        <a
+          className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-6 transition-colors"
+          href="/"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            className="lucide lucide-arrow-left w-4 h-4"
+          >
+            <path d="m12 19-7-7 7-7"></path>
+            <path d="M19 12H5"></path>
+          </svg>
+          Back to Home
+        </a>
+        <div className="mb-8 animate-fade-in">
+          <h1 className="text-3xl md:text-4xl font-bold mb-2">
+            Let us find your dream property
+          </h1>
+          <p className="text-muted-foreground">
+            Tell us what you're looking for and we'll connect you with the best
+            options.
+          </p>
+        </div>
+        <form className="space-y-6" onSubmit={handleSubmit}>
+          <div
+            className="form-section space-y-4 animate-fade-in"
+            style={{ animationDelay: "0.1s" }}
+          >
+            <h2 className="font-semibold text-lg mb-4">Personal Information</h2>
+            <div className="space-y-2">
+              <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                Full Name
+              </label>
+              <input
+                type="text"
+                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm min-h-11"
+                placeholder="Enter your full name"
+                name="fullName"
+                value={formData.fullName}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                Whatsapp Number
+              </label>
+              <input
+                type="tel"
+                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm min-h-11"
+                placeholder="Enter your phone number"
+                name="phone"
+                value={formData.phone}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                Email Address
+              </label>
+              <input
+                type="email"
+                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm min-h-11"
+                placeholder="you@example.com"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div className="flex flex-row items-start space-x-3 space-y-0">
+              <input
+                type="checkbox"
+                className="h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 cursor-pointer"
+                checked={formData.agreeToEmails}
+                onChange={() => handleCheckboxChange("agreeToEmails")}
+                id="newsletter-checkbox"
+              />
+              <div className="space-y-1 leading-none">
+                <label
+                  htmlFor="newsletter-checkbox"
+                  className="cursor-pointer font-normal text-sm text-muted-foreground"
+                >
+                  I agree to receive occasional emails about property deals and
+                  updates from Ekohomesng
+                </label>
+              </div>
+            </div>
+          </div>
+          <div
+            className="form-section space-y-4 animate-fade-in"
+            style={{ animationDelay: "0.2s" }}
+          >
+            <h2 className="font-semibold text-lg mb-4">
+              Property Requirements
+            </h2>
+            <div className="space-y-2">
+              <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                Property Type
+              </label>
+              <select
+                className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 min-h-11"
+                name="propertyType"
+                value={formData.propertyType}
+                onChange={handleInputChange}
+                required
+              >
+                <option value="">Select property type</option>
+                <option value="Apartment">Apartment</option>
+                <option value="Terrace">Terrace</option>
+                <option value="Detached House">Detached House</option>
+                <option value="Semi-Detached">Semi-Detached</option>
+                <option value="Land">Land</option>
+                <option value="Commercial Property">Commercial Property</option>
+              </select>
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                Location of Interest
+              </label>
+              <select
+                className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 min-h-11"
+                name="location"
+                value={formData.location}
+                onChange={handleInputChange}
+                required
+              >
+                <option value="">Select a location</option>
+                <option value="Lekki (Phase 1, Ikate, ...)">
+                  Lekki (Phase 1, Ikate, ...)
+                </option>
+                <option value="Ikoyi">Ikoyi</option>
+                <option value="Victoria Island">Victoria Island</option>
+                <option value="Ikeja">Ikeja</option>
+                <option value="Yaba">Yaba</option>
+                <option value="Surulere">Surulere</option>
+                <option value="Gbagada">Gbagada</option>
+              </select>
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                Number of Bedrooms
+              </label>
+              <select
+                className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 min-h-11"
+                name="bedrooms"
+                value={formData.bedrooms}
+                onChange={handleInputChange}
+                required
+              >
+                <option value="">Select bedrooms</option>
+                <option value="1">1 Bedroom</option>
+                <option value="2">2 Bedrooms</option>
+                <option value="3">3 Bedrooms</option>
+                <option value="4">4 Bedrooms</option>
+                <option value="5+">5+ Bedrooms</option>
+              </select>
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                Budget Range
+              </label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <button
+                  className={`inline-flex items-center gap-2 whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 min-h-11 justify-start text-left text-sm ${
+                    formData.budget === "Under ₦50,000,000"
+                      ? "bg-primary text-primary-foreground"
+                      : "border border-input bg-background hover:bg-accent hover:text-accent-foreground"
+                  }`}
+                  type="button"
+                  onClick={() =>
+                    handleSelectChange("budget", "Under ₦50,000,000")
+                  }
+                >
+                  Under ₦50,000,000
+                </button>
+                <button
+                  className={`inline-flex items-center gap-2 whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 min-h-11 justify-start text-left text-sm ${
+                    formData.budget === "₦50,000,000 – ₦100,000,000"
+                      ? "bg-primary text-primary-foreground"
+                      : "border border-input bg-background hover:bg-accent hover:text-accent-foreground"
+                  }`}
+                  type="button"
+                  onClick={() =>
+                    handleSelectChange("budget", "₦50,000,000 – ₦100,000,000")
+                  }
+                >
+                  ₦50,000,000 – ₦100,000,000
+                </button>
+                <button
+                  className={`inline-flex items-center gap-2 whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 min-h-11 justify-start text-left text-sm ${
+                    formData.budget === "₦100,000,000 – ₦250,000,000"
+                      ? "bg-primary text-primary-foreground"
+                      : "border border-input bg-background hover:bg-accent hover:text-accent-foreground"
+                  }`}
+                  type="button"
+                  onClick={() =>
+                    handleSelectChange("budget", "₦100,000,000 – ₦250,000,000")
+                  }
+                >
+                  ₦100,000,000 – ₦250,000,000
+                </button>
+                <button
+                  className={`inline-flex items-center gap-2 whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 min-h-11 justify-start text-left text-sm ${
+                    formData.budget === "₦250,000,000 – ₦500,000,000"
+                      ? "bg-primary text-primary-foreground"
+                      : "border border-input bg-background hover:bg-accent hover:text-accent-foreground"
+                  }`}
+                  type="button"
+                  onClick={() =>
+                    handleSelectChange("budget", "₦250,000,000 – ₦500,000,000")
+                  }
+                >
+                  ₦250,000,000 – ₦500,000,000
+                </button>
+                <button
+                  className={`inline-flex items-center gap-2 whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 min-h-11 justify-start text-left text-sm ${
+                    formData.budget === "₦500,000,000 – ₦1,000,000,000"
+                      ? "bg-primary text-primary-foreground"
+                      : "border border-input bg-background hover:bg-accent hover:text-accent-foreground"
+                  }`}
+                  type="button"
+                  onClick={() =>
+                    handleSelectChange(
+                      "budget",
+                      "₦500,000,000 – ₦1,000,000,000"
+                    )
+                  }
+                >
+                  ₦500,000,000 – ₦1,000,000,000
+                </button>
+                <button
+                  className={`inline-flex items-center gap-2 whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 min-h-11 justify-start text-left text-sm ${
+                    formData.budget === "Above ₦1,000,000,000"
+                      ? "bg-primary text-primary-foreground"
+                      : "border border-input bg-background hover:bg-accent hover:text-accent-foreground"
+                  }`}
+                  type="button"
+                  onClick={() =>
+                    handleSelectChange("budget", "Above ₦1,000,000,000")
+                  }
+                >
+                  Above ₦1,000,000,000
+                </button>
+              </div>
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                Specific Requirements (Optional)
+              </label>
+              <textarea
+                className="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 min-h-25 resize-none"
+                placeholder="E.g., close to schools, serviced estate, waterfront view, or specify another location if not listed above..."
+                name="additionalNotes"
+                value={formData.additionalNotes}
+                onChange={handleInputChange}
+              />
+            </div>
+          </div>
+          <button
+            className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-11 rounded-md px-8 w-full min-h-[48px]"
+            type="submit"
+          >
+            Submit Request
+          </button>
+        </form>
+      </div>
+    </main>
+  );
+}

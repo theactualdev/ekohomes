@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-sea-green: #2e8a46;
+  --color-dark-gray: #666666;
+  --color-background: #ffffff;
+  --color-foreground: #000000;
+  --color-card: #ffffff;
+  --color-card-foreground: #000000;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #000000;
+  --color-primary: #2e8a46;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #eff7f0;
+  --color-secondary-foreground: #000000;
+  --color-muted: #eff7f0;
+  --color-muted-foreground: #666666;
+  --color-accent: #eff7f0;
+  --color-accent-foreground: #000000;
+  --color-destructive: #e63946;
+  --color-destructive-foreground: #ffffff;
+  --color-border: #e6e6e6;
+  --color-input: #e6e6e6;
+  --color-ring: #2e8a46;
+  --radius: 0.75rem;
+  --color-sidebar-background: #fafafa;
+  --color-sidebar-foreground: #333333;
+  --color-sidebar-primary: #2e8a46;
+  --color-sidebar-primary-foreground: #ffffff;
+  --color-sidebar-accent: #eff7f0;
+  --color-sidebar-accent-foreground: #000000;
+  --color-sidebar-border: #e6e6e6;
+  --color-sidebar-ring: #2e8a46;
+}
+
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  font-family: "DM Sans", sans-serif;
+}
+
+.container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem
+}
+
+.animate-fade-in {
+    animation: fade-in .5s ease-out forwards
+}
+
+@keyframes fade-in {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
