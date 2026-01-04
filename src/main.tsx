@@ -31,7 +31,7 @@ createRoot(document.getElementById("root")!).render(
     <Toaster position="top-center" richColors />
     <header className="px-4 py-3 w-full backdrop-blur-md sticky top-0 z-50 flex items-center justify-center">
       <a href="https://ekohomesng.com/">
-        <img src={logo} alt="Logo" className="h-15 md:h-20 w-auto" />
+        <img src={logo} alt="Logo" className="h-20 md:h-30 w-auto" />
       </a>
     </header>
     <RouterProvider router={router} />
