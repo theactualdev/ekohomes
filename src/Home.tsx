@@ -291,89 +291,21 @@ export default function Home() {
               <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
                 Budget Range
               </label>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                <button
-                  className={`inline-flex items-center gap-2 whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 min-h-11 justify-start text-left text-sm ${
-                    formData.budget === "Under ₦50,000,000"
-                      ? "bg-primary text-primary-foreground"
-                      : "border border-input bg-background hover:bg-accent hover:text-accent-foreground"
-                  }`}
-                  type="button"
-                  onClick={() =>
-                    handleSelectChange("budget", "Under ₦50,000,000")
-                  }
-                >
-                  Under ₦50,000,000
-                </button>
-                <button
-                  className={`inline-flex items-center gap-2 whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 min-h-11 justify-start text-left text-sm ${
-                    formData.budget === "₦50,000,000 – ₦100,000,000"
-                      ? "bg-primary text-primary-foreground"
-                      : "border border-input bg-background hover:bg-accent hover:text-accent-foreground"
-                  }`}
-                  type="button"
-                  onClick={() =>
-                    handleSelectChange("budget", "₦50,000,000 – ₦100,000,000")
-                  }
-                >
-                  ₦50,000,000 – ₦100,000,000
-                </button>
-                <button
-                  className={`inline-flex items-center gap-2 whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 min-h-11 justify-start text-left text-sm ${
-                    formData.budget === "₦100,000,000 – ₦250,000,000"
-                      ? "bg-primary text-primary-foreground"
-                      : "border border-input bg-background hover:bg-accent hover:text-accent-foreground"
-                  }`}
-                  type="button"
-                  onClick={() =>
-                    handleSelectChange("budget", "₦100,000,000 – ₦250,000,000")
-                  }
-                >
-                  ₦100,000,000 – ₦250,000,000
-                </button>
-                <button
-                  className={`inline-flex items-center gap-2 whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 min-h-11 justify-start text-left text-sm ${
-                    formData.budget === "₦250,000,000 – ₦500,000,000"
-                      ? "bg-primary text-primary-foreground"
-                      : "border border-input bg-background hover:bg-accent hover:text-accent-foreground"
-                  }`}
-                  type="button"
-                  onClick={() =>
-                    handleSelectChange("budget", "₦250,000,000 – ₦500,000,000")
-                  }
-                >
-                  ₦250,000,000 – ₦500,000,000
-                </button>
-                <button
-                  className={`inline-flex items-center gap-2 whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 min-h-11 justify-start text-left text-sm ${
-                    formData.budget === "₦500,000,000 – ₦1,000,000,000"
-                      ? "bg-primary text-primary-foreground"
-                      : "border border-input bg-background hover:bg-accent hover:text-accent-foreground"
-                  }`}
-                  type="button"
-                  onClick={() =>
-                    handleSelectChange(
-                      "budget",
-                      "₦500,000,000 – ₦1,000,000,000"
-                    )
-                  }
-                >
-                  ₦500,000,000 – ₦1,000,000,000
-                </button>
-                <button
-                  className={`inline-flex items-center gap-2 whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 min-h-11 justify-start text-left text-sm ${
-                    formData.budget === "Above ₦1,000,000,000"
-                      ? "bg-primary text-primary-foreground"
-                      : "border border-input bg-background hover:bg-accent hover:text-accent-foreground"
-                  }`}
-                  type="button"
-                  onClick={() =>
-                    handleSelectChange("budget", "Above ₦1,000,000,000")
-                  }
-                >
-                  Above ₦1,000,000,000
-                </button>
-              </div>
+              <select
+                className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 min-h-11"
+                name="budget"
+                value={formData.budget}
+                onChange={handleInputChange}
+                required
+              >
+                <option value="">Select budget range</option>
+                <option value="Under ₦50,000,000">Under ₦50,000,000</option>
+                <option value="₦50,000,000 – ₦100,000,000">₦50,000,000 – ₦100,000,000</option>
+                <option value="₦100,000,000 – ₦250,000,000">₦100,000,000 – ₦250,000,000</option>
+                <option value="₦250,000,000 – ₦500,000,000">₦250,000,000 – ₦500,000,000</option>
+                <option value="₦500,000,000 – ₦1,000,000,000">₦500,000,000 – ₦1,000,000,000</option>
+                <option value="Above ₦1,000,000,000">Above ₦1,000,000,000</option>
+              </select>
             </div>
             <div className="space-y-2">
               <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">

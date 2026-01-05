@@ -322,41 +322,19 @@ export default function Shortlet() {
               <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
                 Budget per Night
               </label>
-              <div className="flex flex-wrap gap-2">
-                <button
-                  className={`inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 min-h-[44px] ${
-                    formData.budget === "60k-100k"
-                      ? "bg-primary text-primary-foreground"
-                      : "border border-input bg-background hover:bg-accent hover:text-accent-foreground"
-                  }`}
-                  type="button"
-                  onClick={() => handleSelectChange("budget", "60k-100k")}
-                >
-                  ₦60k - ₦100k
-                </button>
-                <button
-                  className={`inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 min-h-[44px] ${
-                    formData.budget === "100k-200k"
-                      ? "bg-primary text-primary-foreground"
-                      : "border border-input bg-background hover:bg-accent hover:text-accent-foreground"
-                  }`}
-                  type="button"
-                  onClick={() => handleSelectChange("budget", "100k-200k")}
-                >
-                  ₦100k - ₦200k
-                </button>
-                <button
-                  className={`inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2 min-h-[44px] ${
-                    formData.budget === "200k+"
-                      ? "bg-primary text-primary-foreground"
-                      : "border border-input bg-background hover:bg-accent hover:text-accent-foreground"
-                  }`}
-                  type="button"
-                  onClick={() => handleSelectChange("budget", "200k+")}
-                >
-                  ₦200k+
-                </button>
-              </div>
+              <select
+                className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 min-h-[44px]"
+                name="budget"
+                value={formData.budget}
+                onChange={(e) => handleSelectChange("budget", e.target.value)}
+                required
+              >
+                <option value="">Select budget</option>
+                <option value="60k-100k">₦60k - ₦100k</option>
+                <option value="100k-200k">₦100k - ₦200k</option>
+                <option value="200k-300k">₦200k-₦300k</option>
+                <option value="300k+">₦300k+</option>
+              </select>
             </div>
             <div className="space-y-2 flex flex-row items-center justify-between rounded-lg border border-border p-4 bg-background">
               <div className="space-y-0.5">
