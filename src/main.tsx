@@ -45,7 +45,7 @@ createRoot(document.getElementById("root")!).render(
         </div>
         <div className="flex flex-wrap items-center justify-center gap-3">
           <a
-            href="https://wa.me/2348153361264"
+            href="https://wa.me/2348153361264?text=Hello Ekohomes, I just filled a form on your website."
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background h-11 rounded-md px-8 gap-2 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"

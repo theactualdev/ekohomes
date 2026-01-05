@@ -6,7 +6,8 @@ export default function Shortlet() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
-    phone: "+234",
+    countryCode: "+234",
+    phone: "",
     email: "",
     agreeToEmails: false,
     checkIn: "",
@@ -26,7 +27,9 @@ export default function Shortlet() {
   });
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -67,6 +70,7 @@ export default function Shortlet() {
 
     const submissionData = {
       ...formData,
+      phone: `${formData.countryCode}${formData.phone}`,
       timeFilled: timestamp,
     };
 
@@ -91,7 +95,8 @@ export default function Shortlet() {
 
         setFormData({
           fullName: "",
-          phone: "+234",
+          countryCode: "+234",
+          phone: "",
           email: "",
           agreeToEmails: false,
           checkIn: "",
@@ -181,15 +186,39 @@ export default function Shortlet() {
               <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
                 Whatsapp Number
               </label>
-              <input
-                type="tel"
-                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm min-h-11"
-                placeholder="Enter your phone number"
-                name="phone"
-                value={formData.phone}
-                onChange={handleInputChange}
-                required
-              />
+              <div className="flex gap-2">
+                <select
+                  className="flex h-10 w-[140px] items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 min-h-11"
+                  name="countryCode"
+                  value={formData.countryCode}
+                  onChange={handleInputChange}
+                >
+                  <option value="+234">🇳🇬 +234</option>
+                  <option value="+1">🇺🇸 +1</option>
+                  <option value="+44">🇬🇧 +44</option>
+                  <option value="+91">🇮🇳 +91</option>
+                  <option value="+86">🇨🇳 +86</option>
+                  <option value="+81">🇯🇵 +81</option>
+                  <option value="+49">🇩🇪 +49</option>
+                  <option value="+33">🇫🇷 +33</option>
+                  <option value="+39">🇮🇹 +39</option>
+                  <option value="+27">🇿🇦 +27</option>
+                  <option value="+254">🇰🇪 +254</option>
+                  <option value="+233">🇬🇭 +233</option>
+                  <option value="+971">🇦🇪 +971</option>
+                  <option value="+966">🇸🇦 +966</option>
+                  <option value="+65">🇸🇬 +65</option>
+                </select>
+                <input
+                  type="tel"
+                  className="flex h-10 flex-1 rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm min-h-11"
+                  placeholder="Enter your phone number"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
             </div>
             <div className="space-y-2">
               <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
