@@ -2,6 +2,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 export default function Home() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
     phone: "+234",
@@ -50,14 +51,72 @@ export default function Home() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    toast.success("Request Submitted!", {
-      description:
-        "Thank you for your request! We will contact you soon with available options.",
-      duration: 5000,
-    });
+    setIsSubmitting(true);
+
+    const now = new Date();
+    const day = String(now.getDate()).padStart(2, "0");
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const year = String(now.getFullYear()).slice(-2);
+    const hours = String(now.getHours()).padStart(2, "0");
+    const minutes = String(now.getMinutes()).padStart(2, "0");
+    const timestamp = `${day}/${month}/${year} ${hours}:${minutes}`;
+
+    const submissionData = {
+      ...formData,
+      timeFilled: timestamp,
+    };
+
+    try {
+      const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
+
+      const response = await fetch(`${GOOGLE_SCRIPT_URL}?sheet=Sales`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "text/plain",
+        },
+        body: JSON.stringify(submissionData),
+      });
+
+      if (response.ok) {
+        console.log("Form submitted:", submissionData);
+        toast.success("Request Submitted!", {
+          description:
+            "Thank you for your request! We will contact you soon with available options.",
+          duration: 5000,
+        });
+
+        setFormData({
+          fullName: "",
+          phone: "+234",
+          email: "",
+          agreeToEmails: false,
+          propertyType: "",
+          location: "",
+          bedrooms: "",
+          budget: "",
+          amenities: {
+            pool: false,
+            gym: false,
+            games: false,
+            cinema: false,
+          },
+          additionalNotes: "",
+        });
+      } else {
+        throw new Error("Failed to submit form");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast.error("Submission Failed", {
+        description:
+          "There was an error submitting your request. Please try again or contact us directly.",
+        duration: 5000,
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   return (
     <main className="flex-1">
@@ -332,8 +391,9 @@ export default function Home() {
           <button
             className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-11 rounded-md px-8 w-full min-h-[48px]"
             type="submit"
+            disabled={isSubmitting}
           >
-            Submit Request
+            {isSubmitting ? "Submitting..." : "Submit Request"}
           </button>
         </form>
       </div>
