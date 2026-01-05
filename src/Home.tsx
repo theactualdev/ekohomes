@@ -180,7 +180,7 @@ export default function Home() {
               </label>
               <div className="flex gap-2">
                 <select
-                  className="flex h-10 w-[140px] items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 min-h-11"
+                  className="flex h-10 w-15 md:w-[140px] items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 min-h-11"
                   name="countryCode"
                   value={formData.countryCode}
                   onChange={handleInputChange}

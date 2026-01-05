@@ -188,7 +188,7 @@ export default function Shortlet() {
               </label>
               <div className="flex gap-2">
                 <select
-                  className="flex h-10 w-[140px] items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 min-h-11"
+                  className="flex h-10 w-15 md:w-[140px] items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 min-h-11"
                   name="countryCode"
                   value={formData.countryCode}
                   onChange={handleInputChange}
@@ -211,7 +211,7 @@ export default function Shortlet() {
                 </select>
                 <input
                   type="tel"
-                  className="flex h-10 flex-1 rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm min-h-11"
+                  className="flex h-10 flex-1 w-auto rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm min-h-11"
                   placeholder="Enter your phone number"
                   name="phone"
                   value={formData.phone}
