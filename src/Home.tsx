@@ -47,9 +47,9 @@ export default function Home() {
     }
   };
 
-  const handleSelectChange = (name: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  // const handleSelectChange = (name: string, value: string) => {
+  //   setFormData((prev) => ({ ...prev, [name]: value }));
+  // };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -300,11 +300,21 @@ export default function Home() {
               >
                 <option value="">Select budget range</option>
                 <option value="Under ₦50,000,000">Under ₦50,000,000</option>
-                <option value="₦50,000,000 – ₦100,000,000">₦50,000,000 – ₦100,000,000</option>
-                <option value="₦100,000,000 – ₦250,000,000">₦100,000,000 – ₦250,000,000</option>
-                <option value="₦250,000,000 – ₦500,000,000">₦250,000,000 – ₦500,000,000</option>
-                <option value="₦500,000,000 – ₦1,000,000,000">₦500,000,000 – ₦1,000,000,000</option>
-                <option value="Above ₦1,000,000,000">Above ₦1,000,000,000</option>
+                <option value="₦50,000,000 – ₦100,000,000">
+                  ₦50,000,000 – ₦100,000,000
+                </option>
+                <option value="₦100,000,000 – ₦250,000,000">
+                  ₦100,000,000 – ₦250,000,000
+                </option>
+                <option value="₦250,000,000 – ₦500,000,000">
+                  ₦250,000,000 – ₦500,000,000
+                </option>
+                <option value="₦500,000,000 – ₦1,000,000,000">
+                  ₦500,000,000 – ₦1,000,000,000
+                </option>
+                <option value="Above ₦1,000,000,000">
+                  Above ₦1,000,000,000
+                </option>
               </select>
             </div>
             <div className="space-y-2">
