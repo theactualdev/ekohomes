@@ -89,7 +89,6 @@ export default function Shortlet() {
           duration: 5000,
         });
 
-        // Reset form
         setFormData({
           fullName: "",
           phone: "+234",
