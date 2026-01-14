@@ -8,6 +8,7 @@ import logo from "./assets/logo.png";
 import Shortlet from "./Shortlet.tsx";
 import { Toaster } from "sonner";
 import Home from "./Home.tsx";
+import { Analytics } from "@vercel/analytics/react";
 
 const year = new Date().getFullYear();
 
@@ -109,5 +110,6 @@ createRoot(document.getElementById("root")!).render(
         </div>
       </div>
     </footer>
+    <Analytics />
   </StrictMode>
 );
