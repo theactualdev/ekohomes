@@ -78,6 +78,39 @@ function App() {
             </div>
           </a>
         </div>
+        <a
+          href="https://wa.me/+2348153361264?text=Hello Ekohomes, I need..."
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 md:p-8 transition-all duration-300 hover:border-primary hover:shadow-lg hover:shadow-primary/10 animate-fade-in mt-6 max-w-4xl w-full"
+        >
+          <div className="flex items-center justify-center gap-4">
+            <div className="w-16 h-16 rounded-full bg-secondary flex items-center justify-center group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                className="w-8 h-8 text-primary group-hover:text-primary-foreground transition-colors"
+              >
+                <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"></path>
+                <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"></path>
+              </svg>
+            </div>
+            <div className="flex flex-col text-left">
+              <h2 className="text-2xl font-semibold">Contact us on WhatsApp</h2>
+              <p className="text-dark-gray">Get instant support and answers to your questions</p>
+            </div>
+            <div className="ml-auto text-primary font-medium group-hover:underline hidden md:block">
+              Chat now →
+            </div>
+          </div>
+        </a>
       </main>
     </div>
   );
